@@ -16,19 +16,20 @@
 #define M2_POS_X 50.0f
 #define M2_POS_Y .0f
 
-#define ARM_LEN_1 75.0f
-#define ARM_LEN_2 100.0f
-#define ARM_LEN_3 35.0f
+#define ARM_LEN_1 160.0f
+#define ARM_LEN_2 200.0f
+#define ARM_LEN_3 80.0f
 
-#define LIFT_HEIGHT_ANGLE 90
-#define BASE_HEIGHT_ANGLE 40
+#define LIFTED_ANGLE 90
+#define BASE_ANGLE 40
 
 #define STEPS_PER_MM 1.0f
 #define CIRCLE_PRECISION 0.10f
 #define MS_PER_DEG 3.0f //1.7
 
-#define REDUCTION_RATIO 1.4f
-#define MICRO_STEPPING_DIV 32
+#define STEP_ANGLE 1.8f
+#define REDUCTION_RATIO_DIV 4.0f
+#define MICRO_STEPPING_DIV 32.0f
 
 extern TIM_HandleTypeDef *htim;
 extern bool lifted;
@@ -36,6 +37,7 @@ extern float actual_x;
 extern float actual_y;
 extern float m1_angle;
 extern float m2_angle;
+float step_increment;
 
 void lift();
 

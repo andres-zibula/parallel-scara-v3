@@ -12,15 +12,16 @@ float actual_x = .0f;
 float actual_y = .0f;
 float m1_angle = 90.0f;
 float m2_angle = 90.0f;
+float step_increment = STEP_ANGLE/(REDUCTION_RATIO_DIV*MICRO_STEPPING_DIV);
 
 void lift()
 {
-    servo_write(htim, LIFT_HEIGHT_ANGLE);
+    servo_write(htim, LIFTED_ANGLE);
 }
 
 void put_down()
 {
-    servo_write(htim, BASE_HEIGHT_ANGLE);
+    servo_write(htim, BASE_ANGLE);
 }
 
 void draw_line(float x1, float y1, float x2, float y2, bool without_lifting)

@@ -221,10 +221,22 @@ static void MX_TIM2_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, M1_DIR_Pin|M1_STEP_Pin|M2_DIR_Pin|M2_STEP_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : M1_DIR_Pin M1_STEP_Pin M2_DIR_Pin M2_STEP_Pin */
+  GPIO_InitStruct.Pin = M1_DIR_Pin|M1_STEP_Pin|M2_DIR_Pin|M2_STEP_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 

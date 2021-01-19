@@ -120,7 +120,7 @@ void go_to(float x, float y)
       }
     }
 
-    HAL_Delay(123);
+    HAL_Delay(STEP_DELAY);
   }
   
 

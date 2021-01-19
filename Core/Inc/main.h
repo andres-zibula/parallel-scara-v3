@@ -68,6 +68,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define M1_DIR_Pin GPIO_PIN_3
+#define M1_DIR_GPIO_Port GPIOB
+#define M1_STEP_Pin GPIO_PIN_4
+#define M1_STEP_GPIO_Port GPIOB
+#define M2_DIR_Pin GPIO_PIN_6
+#define M2_DIR_GPIO_Port GPIOB
+#define M2_STEP_Pin GPIO_PIN_7
+#define M2_STEP_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

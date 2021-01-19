@@ -35,8 +35,8 @@ extern TIM_HandleTypeDef *htim;
 extern bool lifted;
 extern float actual_x;
 extern float actual_y;
-extern float m1_angle;
-extern float m2_angle;
+extern float m1_actual_angle;
+extern float m2_actual_angle;
 float step_increment;
 
 void lift();

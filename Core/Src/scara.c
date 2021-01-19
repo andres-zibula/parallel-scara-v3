@@ -10,9 +10,14 @@
 bool lifted = false;
 float actual_x = .0f;
 float actual_y = .0f;
-float m1_angle = 90.0f;
-float m2_angle = 90.0f;
+float m1_actual_angle = 90.0f;
+float m2_actual_angle = 90.0f;
 float step_increment = STEP_ANGLE/(REDUCTION_RATIO_DIV*MICRO_STEPPING_DIV);
+
+bool equal_angles(float a, float b)
+{
+  return fabsf(a - b)/2.0f <= step_increment;
+}
 
 void lift()
 {
@@ -39,7 +44,6 @@ void draw_line(float x1, float y1, float x2, float y2, bool without_lifting)
   {
     go_to(x1 + i*dx/c, y1 + i*dy/c);
   }
-  
 
   if(!without_lifting)
     lift();
@@ -83,13 +87,47 @@ void go_to(float x, float y)
   float d1 = pitagoras(x1 - M1_POS_X, y1 - M1_POS_Y);
   float theta1 = atan2f((y1 - M1_POS_Y), (x1 - M1_POS_X)) + cosine_angle_rule(d1, ARM_LEN_2, ARM_LEN_1);
 
-  float m1deg = rad_to_deg(theta1);
-  float m2deg = rad_to_deg(M_PI - theta2);
+  float m1_angle = rad_to_deg(theta1);
+  float m2_angle = rad_to_deg(M_PI - theta2);
    
-  servo1.write(m1deg + S1_OFFSET);
-  servo2.write(m2deg + S2_OFFSET);
+  while (!equal_angles(m1_angle, m1_actual_angle) && !equal_angles(m2_angle, m2_actual_angle))
+  {
+    if (!equal_angles(m1_angle, m1_actual_angle))
+    {
+      if (m1_angle > m1_actual_angle)
+      {
+        m1_actual_angle += step_increment;
+        //send signal to increment stepper
+      }
+      else
+      {
+        m1_actual_angle -= step_increment;
+        //send signal to decrement stepper
+      }
+    }
   
-  float max_dist = max(abs(actual_s1_deg - m1deg), abs(actual_s2_deg - m2deg));
+    if (!equal_angles(m2_angle, m2_actual_angle))
+    {
+      if (m2_angle > m2_actual_angle)
+      {
+        m2_actual_angle += step_increment;
+        //send signal to increment stepper
+      }
+      else
+      {
+        m2_actual_angle -= step_increment;
+        //send signal to decrement stepper
+      }
+    }
+
+    HAL_Delay(123);
+  }
+  
+
+
+
+  
+  float max_dist = max(abs(actual_s1_deg - m1_angle), abs(actual_s2_deg - m2_angle));
   int delay_servo = ceil(MS_PER_DEG*ceil(max_dist));
 
   if (delay_servo < 10)
@@ -97,8 +135,8 @@ void go_to(float x, float y)
   
   actual_x = x;
   actual_y = y;
-  actual_s1_deg = m1deg;
-  actual_s2_deg = m2deg;
+  actual_s1_deg = m1_angle;
+  actual_s2_deg = m2_angle;
   
   delay(delay_servo);
 }

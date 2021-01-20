@@ -70,7 +70,6 @@ void go_to(float x, float y)
   if (actual_x == x && actual_y == y)
     return;
 
-
   float L4 = cosine_side_rule(M_PI - M_PI/4.0f, ARM_LEN_2, ARM_LEN_3);
   float epsilon = cosine_angle_rule(L4, ARM_LEN_2, ARM_LEN_3);
   float d3 = pitagoras(M2_POS_X - x, y - M2_POS_Y);
@@ -96,47 +95,37 @@ void go_to(float x, float y)
     {
       if (m1_angle > m1_actual_angle)
       {
+        HAL_GPIO_WritePin(GPIOB, M1_DIR_Pin, GPIO_PIN_SET);
         m1_actual_angle += step_increment;
-        //send signal to increment stepper
       }
       else
       {
+        HAL_GPIO_WritePin(GPIOB, M1_DIR_Pin, GPIO_PIN_RESET);
         m1_actual_angle -= step_increment;
-        //send signal to decrement stepper
       }
+
+      HAL_GPIO_WritePin(GPIOB, M1_STEP_Pin, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(GPIOB, M1_STEP_Pin, GPIO_PIN_RESET);
     }
   
     if (!equal_angles(m2_angle, m2_actual_angle))
     {
       if (m2_angle > m2_actual_angle)
       {
+        HAL_GPIO_WritePin(GPIOB, M2_DIR_Pin, GPIO_PIN_SET);
         m2_actual_angle += step_increment;
-        //send signal to increment stepper
       }
       else
       {
+        HAL_GPIO_WritePin(GPIOB, M2_DIR_Pin, GPIO_PIN_RESET);
         m2_actual_angle -= step_increment;
-        //send signal to decrement stepper
       }
+
+      HAL_GPIO_WritePin(GPIOB, M2_STEP_Pin, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(GPIOB, M2_STEP_Pin, GPIO_PIN_RESET);
     }
 
     HAL_Delay(STEP_DELAY);
   }
   
-
-
-
-  
-  float max_dist = max(abs(actual_s1_deg - m1_angle), abs(actual_s2_deg - m2_angle));
-  int delay_servo = ceil(MS_PER_DEG*ceil(max_dist));
-
-  if (delay_servo < 10)
-    delay_servo = 10;
-  
-  actual_x = x;
-  actual_y = y;
-  actual_s1_deg = m1_angle;
-  actual_s2_deg = m2_angle;
-  
-  delay(delay_servo);
 }

@@ -31,7 +31,7 @@
 #define REDUCTION_RATIO_DIV 4.0f
 #define MICRO_STEPPING_DIV 32.0f
 
-#define STEP_DELAY 123
+#define STEP_DELAY 50
 
 extern TIM_HandleTypeDef *htim;
 extern bool lifted;

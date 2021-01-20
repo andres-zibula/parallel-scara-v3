@@ -12,6 +12,11 @@
 #include "math.h"
 #include "stdbool.h"
 
+extern TIM_HandleTypeDef *htim;
+extern TIM_HandleTypeDef *htim_ms;
+
+void delay_us (uint16_t);
+
 uint16_t map(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t);
 
 void servo_write(TIM_HandleTypeDef *, uint8_t);

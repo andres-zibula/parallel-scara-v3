@@ -33,7 +33,6 @@
 
 #define STEP_DELAY 50
 
-extern TIM_HandleTypeDef *htim;
 extern bool lifted;
 extern float actual_x;
 extern float actual_y;

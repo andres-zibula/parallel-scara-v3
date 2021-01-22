@@ -89,7 +89,7 @@ void go_to(float x, float y)
   float m1_angle = rad_to_deg(theta1);
   float m2_angle = rad_to_deg(M_PI - theta2);
    
-  while (!equal_angles(m1_angle, m1_actual_angle) && !equal_angles(m2_angle, m2_actual_angle))
+  while (!equal_angles(m1_angle, m1_actual_angle) || !equal_angles(m2_angle, m2_actual_angle))
   {
     if (!equal_angles(m1_angle, m1_actual_angle))
     {
@@ -104,7 +104,10 @@ void go_to(float x, float y)
         m1_actual_angle -= step_increment;
       }
 
+      delay_us(1);
+
       HAL_GPIO_WritePin(GPIOB, M1_STEP_Pin, GPIO_PIN_SET);
+      delay_us(2);
       HAL_GPIO_WritePin(GPIOB, M1_STEP_Pin, GPIO_PIN_RESET);
     }
   
@@ -121,7 +124,10 @@ void go_to(float x, float y)
         m2_actual_angle -= step_increment;
       }
 
+      delay_us(1);
+
       HAL_GPIO_WritePin(GPIOB, M2_STEP_Pin, GPIO_PIN_SET);
+      delay_us(2);
       HAL_GPIO_WritePin(GPIOB, M2_STEP_Pin, GPIO_PIN_RESET);
     }
 

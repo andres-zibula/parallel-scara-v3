@@ -105,10 +105,16 @@ int main(void)
   while (1)
   {
 
-	  servo_write(&htim2, 0);
+	  /*servo_write(&htim2, 0);
 	  HAL_Delay(1000);
 	  servo_write(&htim2, 180);
-	  HAL_Delay(1000);
+	  HAL_Delay(1000);*/
+
+    go_to(50.0f, 200.0f);
+    HAL_Delay(3000);
+    go_to(50.0f, 250.0f);
+    HAL_Delay(3000);
+
 
     /* USER CODE END WHILE */
 

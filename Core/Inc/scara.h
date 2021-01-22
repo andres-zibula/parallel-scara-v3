@@ -9,11 +9,12 @@
 #define INC_SCARA_H_
 
 #include "utils.h"
+#include "stdbool.h"
 
 #define M1_POS_X .0f
 #define M1_POS_Y .0f
 
-#define M2_POS_X 50.0f
+#define M2_POS_X 100.0f
 #define M2_POS_Y .0f
 
 #define ARM_LEN_1 160.0f
@@ -31,7 +32,7 @@
 #define REDUCTION_RATIO_DIV 4.0f
 #define MICRO_STEPPING_DIV 32.0f
 
-#define STEP_DELAY 50
+#define STEP_DELAY 5
 
 extern bool lifted;
 extern float actual_x;

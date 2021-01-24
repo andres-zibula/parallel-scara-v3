@@ -109,11 +109,10 @@ int main(void)
 	  HAL_Delay(1000);
 	  servo_write(&htim2, 180);
 	  HAL_Delay(1000);*/
-
-    go_to(50.0f, 200.0f);
-    HAL_Delay(3000);
-    go_to(50.0f, 250.0f);
-    HAL_Delay(3000);
+    //draw_line(50.0f, 200.0f, 50.0f, 250.0f, false);
+    draw_circle(50.0f, 350.0f, 200.0f);
+    //draw_line(-150.0f, 250.0f, 250.0f, 250.0f, false);
+    //HAL_Delay(3000);
 
 
     /* USER CODE END WHILE */

@@ -25,14 +25,15 @@
 #define BASE_ANGLE 40
 
 #define STEPS_PER_MM 1.0f
-#define CIRCLE_PRECISION 0.10f
+#define CIRCLE_PRECISION 0.1f
 #define MS_PER_DEG 3.0f //1.7
 
 #define STEP_ANGLE 1.8f
 #define REDUCTION_RATIO_DIV 4.0f
 #define MICRO_STEPPING_DIV 32.0f
 
-#define STEP_DELAY 5
+#define STEP_DELAY 1
+#define STEP_DELAY_MS 500
 
 extern bool lifted;
 extern float actual_x;
@@ -45,10 +46,10 @@ void lift();
 
 void put_down();
 
-void draw_line(float, float, float, float, bool);
+void draw_line(float x1, float y1, float x2, float y2, bool without_lifting);
 
-void draw_circle(float, float, float);
+void draw_circle(float x, float y, float radius);
 
-void go_to(float, float);
+void go_to(float x, float y);
 
 #endif /* INC_SCARA_H_ */

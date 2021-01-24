@@ -16,7 +16,7 @@ float step_increment = STEP_ANGLE/(REDUCTION_RATIO_DIV*MICRO_STEPPING_DIV);
 
 bool equal_angles(float a, float b)
 {
-  return fabsf(a - b)/2.0f <= step_increment;
+  return fabsf(a - b)/2.0f < step_increment;
 }
 
 void lift()
@@ -51,15 +51,15 @@ void draw_line(float x1, float y1, float x2, float y2, bool without_lifting)
 
 void draw_circle(float x, float y, float radius)
 {
-  go_to(x+cos(0)*radius, y+sin(0)*radius);
+  go_to(x+cosf(0.0f)*radius, y+sinf(0.0f)*radius);
   
   if(lifted)
     put_down();
   
   for(float r = CIRCLE_PRECISION; r <= M_PI*2.0f; r += CIRCLE_PRECISION)
   {
-    //draw_line(actual_x, actual_y, x+cos(r)*radius, y+sin(r)*radius, true);
-    go_to(x+cos(r)*radius, y+sin(r)*radius);
+    //draw_line(actual_x, actual_y, x+cosf(r)*radius, y+sinf(r)*radius, true);
+    go_to(x+cosf(r)*radius, y+sinf(r)*radius);
   }
   
   lift();
@@ -74,6 +74,8 @@ void go_to(float x, float y)
   float epsilon = cosine_angle_rule(L4, ARM_LEN_2, ARM_LEN_3);
   float d3 = pitagoras(M2_POS_X - x, y - M2_POS_Y);
   float theta2 = atan2f(y, (M2_POS_X - x)) + cosine_angle_rule(d3, L4, ARM_LEN_1);
+  float debatan1 = atan2f(y, (M2_POS_X - x));
+  float debcosin1 = cosine_angle_rule(d3, L4, ARM_LEN_1);
   
   float x4 = M2_POS_X + ARM_LEN_1*cosf(M_PI - theta2);
   float y4 = M2_POS_Y + ARM_LEN_1*sinf(M_PI - theta2);
@@ -85,6 +87,8 @@ void go_to(float x, float y)
   
   float d1 = pitagoras(x1 - M1_POS_X, y1 - M1_POS_Y);
   float theta1 = atan2f((y1 - M1_POS_Y), (x1 - M1_POS_X)) + cosine_angle_rule(d1, ARM_LEN_2, ARM_LEN_1);
+  float debatan2 = atan2f((y1 - M1_POS_Y), (x1 - M1_POS_X));
+  float debcosin2 = cosine_angle_rule(d1, ARM_LEN_2, ARM_LEN_1);
 
   float m1_angle = rad_to_deg(theta1);
   float m2_angle = rad_to_deg(M_PI - theta2);
@@ -131,7 +135,8 @@ void go_to(float x, float y)
       HAL_GPIO_WritePin(GPIOB, M2_STEP_Pin, GPIO_PIN_RESET);
     }
 
-    HAL_Delay(STEP_DELAY);
+    //HAL_Delay(STEP_DELAY);
+    delay_us(STEP_DELAY_MS);
   }
   
 }

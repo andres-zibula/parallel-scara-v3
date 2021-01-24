@@ -24,24 +24,24 @@ void servo_write(TIM_HandleTypeDef *htim, uint8_t angle)
 	htim->Instance->CCR1 = map(0, 180, 1700, 7000, angle);
 }
 
-float cosine_angle_rule(float a, float b, float c)
+double cosine_angle_rule(double a, double b, double c)
 {
   // cosine rule for angle between c and a
-  return acosf((a * a + c * c - b * b) / (2.0f * a * c));
+  return acos((a * a + c * c - b * b) / (2.0 * a * c));
 }
 
-float cosine_side_rule(float A, float b, float c)
+double cosine_side_rule(double A, double b, double c)
 {
-  return sqrtf(b*b+c*c-2*b*c*cosf(A));
+  return sqrt(b*b+c*c-2*b*c*cos(A));
 }
 
-float rad_to_deg(float rad)
+double rad_to_deg(double rad)
 {
-  return rad * (180.0f / M_PI);
+  return rad * (180.0 / M_PI);
 }
 
-float pitagoras(float b, float c)
+double pitagoras(double b, double c)
 {
-  return sqrtf(b*b + c*c);
+  return sqrt(b*b + c*c);
 }
 

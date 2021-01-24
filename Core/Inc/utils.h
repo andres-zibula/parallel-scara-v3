@@ -21,13 +21,13 @@ uint16_t map(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t);
 
 void servo_write(TIM_HandleTypeDef *, uint8_t);
 
-float cosine_angle_rule(float, float, float);
+double cosine_angle_rule(double, double, double);
 
-float cosine_side_rule(float, float, float);
+double cosine_side_rule(double, double, double);
 
-float rad_to_deg(float);
+double rad_to_deg(double);
 
-float pitagoras(float, float);
+double pitagoras(double, double);
 
 
 

@@ -27,7 +27,14 @@ void servo_write(TIM_HandleTypeDef *htim, uint8_t angle)
 double cosine_angle_rule(double a, double b, double c)
 {
   // cosine rule for angle between c and a
-  return acos((a * a + c * c - b * b) / (2.0 * a * c));
+  double x = (a * a + c * c - b * b) / (2.0 * a * c);
+  if (x > 1.0) {
+    x = 1.0;
+  }
+  else if (x < -1.0) {
+    x = -1.0;
+  }
+  return acos(x);
 }
 
 double cosine_side_rule(double A, double b, double c)

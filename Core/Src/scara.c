@@ -16,7 +16,7 @@ double step_increment = STEP_ANGLE/(REDUCTION_RATIO_DIV*MICRO_STEPPING_DIV);
 
 bool equal_angles(double a, double b)
 {
-  return fabs(a - b)/2.0 < step_increment;
+  return fabs(a - b) < step_increment;
 }
 
 void lift()
@@ -74,8 +74,8 @@ void go_to(double x, double y)
   double epsilon = cosine_angle_rule(L4, ARM_LEN_2, ARM_LEN_3);
   double d3 = pitagoras(M2_POS_X - x, y - M2_POS_Y);
   double theta2 = atan2(y, (M2_POS_X - x)) + cosine_angle_rule(d3, L4, ARM_LEN_1);
-  double debatan1 = atan2(y, (M2_POS_X - x));
-  double debcosin1 = cosine_angle_rule(d3, L4, ARM_LEN_1);
+  //double debatan1 = atan2(y, (M2_POS_X - x));
+  //double debcosin1 = cosine_angle_rule(d3, L4, ARM_LEN_1);
   
   double x4 = M2_POS_X + ARM_LEN_1*cos(M_PI - theta2);
   double y4 = M2_POS_Y + ARM_LEN_1*sin(M_PI - theta2);
@@ -87,8 +87,8 @@ void go_to(double x, double y)
   
   double d1 = pitagoras(x1 - M1_POS_X, y1 - M1_POS_Y);
   double theta1 = atan2((y1 - M1_POS_Y), (x1 - M1_POS_X)) + cosine_angle_rule(d1, ARM_LEN_2, ARM_LEN_1);
-  double debatan2 = atan2((y1 - M1_POS_Y), (x1 - M1_POS_X));
-  double debcosin2 = cosine_angle_rule(d1, ARM_LEN_2, ARM_LEN_1);
+  //double debatan2 = atan2((y1 - M1_POS_Y), (x1 - M1_POS_X));
+  //double debcosin2 = cosine_angle_rule(d1, ARM_LEN_2, ARM_LEN_1);
 
   double m1_angle = rad_to_deg(theta1);
   double m2_angle = rad_to_deg(M_PI - theta2);
@@ -108,10 +108,10 @@ void go_to(double x, double y)
         m1_actual_angle -= step_increment;
       }
 
-      delay_us(1);
+      delay_us(DIR_TOGGLE_DELAY_MS);
 
       HAL_GPIO_WritePin(GPIOB, M1_STEP_Pin, GPIO_PIN_SET);
-      delay_us(2);
+      delay_us(STEP_TOGGLE_DELAY_MS);
       HAL_GPIO_WritePin(GPIOB, M1_STEP_Pin, GPIO_PIN_RESET);
     }
   
@@ -128,10 +128,10 @@ void go_to(double x, double y)
         m2_actual_angle -= step_increment;
       }
 
-      delay_us(1);
+      delay_us(DIR_TOGGLE_DELAY_MS);
 
       HAL_GPIO_WritePin(GPIOB, M2_STEP_Pin, GPIO_PIN_SET);
-      delay_us(2);
+      delay_us(STEP_TOGGLE_DELAY_MS);
       HAL_GPIO_WritePin(GPIOB, M2_STEP_Pin, GPIO_PIN_RESET);
     }
 

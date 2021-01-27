@@ -110,7 +110,8 @@ int main(void)
 	  servo_write(&htim2, 180);
 	  HAL_Delay(1000);*/
     //draw_line(50.0f, 200.0f, 50.0f, 250.0f, false);
-    draw_circle(50.0, 350.0, 200.0);
+    draw_circle(50.0, 250.0, 100.0);
+    HAL_Delay(1000);
     //draw_line(-150.0f, 250.0f, 250.0f, 250.0f, false);
     //HAL_Delay(3000);
 

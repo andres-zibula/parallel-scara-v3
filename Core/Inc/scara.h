@@ -25,7 +25,7 @@
 #define BASE_ANGLE 40
 
 #define STEPS_PER_MM 1.0
-#define CIRCLE_PRECISION 0.1
+#define CIRCLE_PRECISION 0.01
 #define MS_PER_DEG 3.0 //1.7
 
 #define STEP_ANGLE 1.8
@@ -34,6 +34,8 @@
 
 #define STEP_DELAY 1
 #define STEP_DELAY_MS 500
+#define STEP_TOGGLE_DELAY_MS 4
+#define DIR_TOGGLE_DELAY_MS 2
 
 extern bool lifted;
 extern double actual_x;

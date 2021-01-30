@@ -21,11 +21,11 @@
 #define ARM_LEN_2 200.0
 #define ARM_LEN_3 80.0
 
-#define LIFTED_ANGLE 90
-#define BASE_ANGLE 40
+#define LIFTED_ANGLE 60
+#define BASE_ANGLE 100
 
-#define STEPS_PER_MM 1.0
-#define CIRCLE_PRECISION 0.01
+#define STEPS_PER_MM 4.0
+#define CIRCLE_PRECISION 0.001
 #define MS_PER_DEG 3.0 //1.7
 
 #define STEP_ANGLE 1.8

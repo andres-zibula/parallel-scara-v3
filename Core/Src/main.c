@@ -110,10 +110,23 @@ int main(void)
 	  servo_write(&htim2, 180);
 	  HAL_Delay(1000);*/
     //draw_line(50.0f, 200.0f, 50.0f, 250.0f, false);
-    draw_circle(50.0, 250.0, 100.0);
-    HAL_Delay(1000);
+    //draw_circle(50.0, 300.0, 70.0);
+    //HAL_Delay(1000);
     //draw_line(-150.0f, 250.0f, 250.0f, 250.0f, false);
     //HAL_Delay(3000);
+
+
+    draw_line(-100.0f, 250.0f, 200.0f, 250.0f, true);
+    draw_line(200.0f, 250.0f, 200.0f, 370.0f, true);
+    draw_line(200.0f, 370.0f, -100.0f, 370.0f, true);
+    draw_line(-100.0f, 370.0f, -100.0f, 250.0f, true);
+
+    /*lift();
+    //servo_write(htim, 0);
+    HAL_Delay(1000);
+    //servo_write(htim, 160);
+    put_down();
+    HAL_Delay(1000);*/
 
 
     /* USER CODE END WHILE */

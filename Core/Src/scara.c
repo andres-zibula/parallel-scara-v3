@@ -16,7 +16,7 @@ double step_increment = STEP_ANGLE/(REDUCTION_RATIO_DIV*MICRO_STEPPING_DIV);
 
 bool equal_angles(double a, double b)
 {
-  return fabs(a - b) < step_increment;
+  return fabs(a - b) <= step_increment/2.0;
 }
 
 void lift()

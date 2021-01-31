@@ -23,6 +23,7 @@
 
 #define LIFTED_ANGLE 60
 #define BASE_ANGLE 100
+#define LIFT_DELAY 500
 
 #define STEPS_PER_MM 4.0
 #define CIRCLE_PRECISION 0.001
@@ -33,7 +34,7 @@
 #define MICRO_STEPPING_DIV 32.0
 
 #define STEP_DELAY 1
-#define STEP_DELAY_MS 500
+#define STEP_DELAY_MS 300
 #define STEP_TOGGLE_DELAY_MS 4
 #define DIR_TOGGLE_DELAY_MS 2
 

@@ -116,10 +116,10 @@ int main(void)
     //HAL_Delay(3000);
 
 
-    draw_line(-100.0f, 250.0f, 200.0f, 250.0f, true);
-    draw_line(200.0f, 250.0f, 200.0f, 370.0f, true);
-    draw_line(200.0f, 370.0f, -100.0f, 370.0f, true);
-    draw_line(-100.0f, 370.0f, -100.0f, 250.0f, true);
+    draw_line(-100.0f, 260.0f, 200.0f, 260.0f, true);
+    draw_line(200.0f, 260.0f, 200.0f, 380.0f, true);
+    draw_line(200.0f, 380.0f, -100.0f, 380.0f, true);
+    draw_line(-100.0f, 380.0f, -100.0f, 260.0f, true);
 
     /*lift();
     //servo_write(htim, 0);

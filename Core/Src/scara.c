@@ -22,11 +22,13 @@ bool equal_angles(double a, double b)
 void lift()
 {
     servo_write(htim, LIFTED_ANGLE);
+    HAL_Delay(300);
 }
 
 void put_down()
 {
     servo_write(htim, BASE_ANGLE);
+    HAL_Delay(300);
 }
 
 void draw_line(double x1, double y1, double x2, double y2, bool without_lifting)

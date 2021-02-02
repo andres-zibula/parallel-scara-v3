@@ -7,7 +7,7 @@
 
 #include "scara.h"
 
-bool lifted = false;
+bool lifted = true;
 double actual_x = .0;
 double actual_y = .0;
 double m1_actual_angle = 90.0;
@@ -21,14 +21,16 @@ bool equal_angles(double a, double b)
 
 void lift()
 {
-    servo_write(htim, LIFTED_ANGLE);
-    HAL_Delay(LIFT_DELAY);
+  lifted = true;
+  servo_write(htim, LIFTED_ANGLE);
+  HAL_Delay(LIFT_DELAY);
 }
 
 void put_down()
 {
-    servo_write(htim, BASE_ANGLE);
-    HAL_Delay(LIFT_DELAY);
+  lifted = false;
+  servo_write(htim, BASE_ANGLE);
+  HAL_Delay(LIFT_DELAY);
 }
 
 void draw_line(double x1, double y1, double x2, double y2, bool without_lifting)

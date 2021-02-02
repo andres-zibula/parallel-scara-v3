@@ -104,29 +104,31 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    lift();
 
-	  /*servo_write(&htim2, 0);
-	  HAL_Delay(1000);
-	  servo_write(&htim2, 180);
-	  HAL_Delay(1000);*/
-    //draw_line(50.0f, 200.0f, 50.0f, 250.0f, false);
-    //draw_circle(50.0, 300.0, 70.0);
-    //HAL_Delay(1000);
-    //draw_line(-150.0f, 250.0f, 250.0f, 250.0f, false);
-    //HAL_Delay(3000);
+    HAL_Delay(5000);
 
 
-    draw_line(-100.0f, 260.0f, 200.0f, 260.0f, true);
-    draw_line(200.0f, 260.0f, 200.0f, 380.0f, true);
-    draw_line(200.0f, 380.0f, -100.0f, 380.0f, true);
-    draw_line(-100.0f, 380.0f, -100.0f, 260.0f, true);
+    draw_line(-75.0, 250.0, 175.0, 250.0, true);
+    draw_line(175.0, 250.0, 175.0, 380.0, true);
+    draw_line(175.0, 380.0, -75.0, 380.0, true);
+    draw_line(-75.0, 380.0, -75.0, 250.0, false);
 
-    /*lift();
-    //servo_write(htim, 0);
-    HAL_Delay(1000);
-    //servo_write(htim, 160);
-    put_down();
-    HAL_Delay(1000);*/
+    draw_line(-50.0, 275.0, 150.0, 275.0, true);
+    draw_line(150.0, 275.0, 150.0, 355.0, true);
+    draw_line(150.0, 355.0, -50.0, 355.0, true);
+    draw_line(-50.0, 355.0, -50.0, 275.0, false);
+
+    draw_line(-25.0, 300.0, 125.0, 300.0, true);
+    draw_line(125.0, 300.0, 125.0, 320.0, true);
+    draw_line(125.0, 320.0, -25.0, 320.0, true);
+    draw_line(-25.0, 320.0, -25.0, 300.0, false);
+
+    draw_circle(50.0, 315.0, 60.0);
+    draw_circle(50.0, 315.0, 50.0);
+    draw_circle(50.0, 315.0, 40.0);
+
+    HAL_Delay(30000);
 
 
     /* USER CODE END WHILE */
